@@ -25,5 +25,6 @@ test('Login Test Case', async ({ page }) => {
     }
 
     await page.locator("[routerlink*='cart']").click();
+    // page.pause();
     page.pause();
 });
