@@ -4,7 +4,7 @@ test('Login Test Case', async ({ page }) => {
     const products = page.locator('.card-body');
     const productName = 'ZARA COAT 3';
     const loginId = page.locator("#userEmail");
-    const loginPassword =  page.locator("#userPassword");
+    const loginPassword = page.locator("#userPassword");
     const loginBtn = page.locator('#login');
 
     await page.goto("https://rahulshettyacademy.com/client/");
@@ -12,19 +12,30 @@ test('Login Test Case', async ({ page }) => {
     await loginPassword.fill("OnePlus@2024");
     await loginBtn.click();
     await page.waitForLoadState('networkidle');
-    
+
     const title = await page.locator('.card-body b').allTextContents();
     const countOfProducts = await products.count();
     console.log(countOfProducts);
 
-    for(let i = 0; i< countOfProducts; ++i){
-        if(await products.nth(i).locator('b').textContent() === productName){
+    for (let i = 0; i < countOfProducts; ++i) {
+        if (await products.nth(i).locator('b').textContent() === productName) {
             await products.nth(i).locator("text= Add To Cart").click();
             break;
         }
     }
 
     await page.locator("[routerlink*='cart']").click();
-    // page.pause();
-    page.pause();
+    await page.locator('div li').first().waitFor();
+
+    const bool = await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
+    
+    expect(bool).toBeTruthy();
+    await page.getByRole("button", { name: "Checkout" }).click();
+
+    await page.getByPlaceholder("Select Country").pressSequentially("ind");
+
+    await page.getByRole("button", { name: "India" }).nth(1).click();
+    await page.getByText("PLACE ORDER").click();
+
+    await expect(page.getByText("Thankyou for the order.")).toBeVisible();
 });
