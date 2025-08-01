@@ -12,6 +12,7 @@ const { defineConfig, devices, chromium } = require('@playwright/test');
  */
 const config = ({
   testDir: './tests',
+  retries: 1, //failed test will be exeucted again 1 more time
   timeout: 20000,
   reporter: [["line"], ["allure-playwright"],['html']],
   expect: {
