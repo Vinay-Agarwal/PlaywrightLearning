@@ -14,14 +14,18 @@ const config = ({
   testDir: './tests',
   retries: 1, //failed test will be exeucted again 1 more time
   timeout: 20000,
-  reporter: [["line"], ["allure-playwright"],['html']],
+  reporter: [
+    ["line"], 
+    //["allure-playwright"],
+    ['html']
+  ],
   expect: {
     timeout: 5000
   },
   /* Run tests in files in parallel */
   use: {
     browserName: 'chromium',
-    headless: false,
+    headless: true,
     screenshot: 'on',
     trace: 'retain-on-failure'
     /* Base URL to use in actions like `await page.goto('/')`. */

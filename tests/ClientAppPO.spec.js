@@ -1,24 +1,24 @@
 const { test, expect } = require("@playwright/test");
-const { LoginPage } = require('../pageobjects/LoginPage');
-const { DashBoardPage } = require('../pageobjects/DashBoardPage');
 const { POManager } = require('../pageobjects/POManager');
+const dataSet = JSON.parse(JSON.stringify(require('../utils/placeorderTestData.json')));
+//convert JSON to String and then String to Object
 
 test('Login Test Case', async ({ page }) => {
     const poManager = new POManager(page);
-    const userName = "vkkumar1922@gmail.com";
-    const password = "OnePlus@2024";
-    const productName = 'ZARA COAT 3';
+    //const userName = "vkkumar1922@gmail.com";
+    //const password = "OnePlus@2024";
+    //const productName = 'ZARA COAT 3';
 
     const loginPage = poManager.getLoginPage();
     await loginPage.goTo();
-    await loginPage.validLogin(userName, password);
+    await loginPage.validLogin(dataSet.userName, dataSet.password);
 
     const dashboardPage = poManager.getDashboardPage();
-    await dashboardPage.searchProductAddCart(productName);
+    await dashboardPage.searchProductAddCart(dataSet.productName);
     await dashboardPage.navigateToCart();
 
     const cartPage = poManager.getCartPage();
-    await cartPage.VerifyProductIsDisplayed(productName);
+    await cartPage.VerifyProductIsDisplayed(dataSet.productName);
     await cartPage.Checkout();
 
     const ordersReviewPage = poManager.getOrdersReviewPage();
