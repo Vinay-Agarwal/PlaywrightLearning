@@ -28,7 +28,7 @@ test('Login Test Case', async ({ page }) => {
     await page.locator('div li').first().waitFor();
 
     const bool = await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
-    
+
     expect(bool).toBeTruthy();
     await page.getByRole("button", { name: "Checkout" }).click();
 

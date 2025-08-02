@@ -21,7 +21,7 @@ const config = ({
   /* Run tests in files in parallel */
   use: {
     browserName: 'chromium',
-    headless: true,
+    headless: false,
     screenshot: 'on',
     trace: 'retain-on-failure'
     /* Base URL to use in actions like `await page.goto('/')`. */
