@@ -1,6 +1,12 @@
-{
-    "userName":"vkkumar1922@gmail.com",
-    "password":"OnePlus@2024",
-    "productName":"ZARA COAT 3"
-    
-}
+[
+    {
+        "userName": "vkkumar1922@gmail.com",
+        "password": "OnePlus@2024",
+        "productName": "ZARA COAT 3"
+    },
+    {
+        "userName": "vkkumar2201@gmail.com",
+        "password": "OnePlus@2024",
+        "productName": "ADIDAS ORIGINAL" 
+    }
+]
