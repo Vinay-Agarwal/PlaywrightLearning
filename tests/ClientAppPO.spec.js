@@ -5,7 +5,7 @@ const dataSet = JSON.parse(JSON.stringify(require('../utils/placeorderTestData.j
 //convert JSON to String and then String to Object
 
 for (const data of dataSet) {
-    test(`Login Test Case ${data.productName}`, async ({ page }) => {
+    test.only(`Login Test Case ${data.productName}`, async ({ page }) => {
         const poManager = new POManager(page);
         //const userName = "vkkumar1922@gmail.com";
         //const password = "OnePlus@2024";
@@ -35,7 +35,7 @@ for (const data of dataSet) {
     });
 }
 
-customTest.only('custom fixture test login', async({page,testDataForOrder})=>{
+customTest('custom fixture test login', async({page,testDataForOrder})=>{
     const poManager = new POManager(page);
     const loginPage = poManager.getLoginPage();
     await loginPage.goTo();
